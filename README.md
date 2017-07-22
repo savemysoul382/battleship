@@ -1,4 +1,4 @@
 # battleship
-trying some web app
-realization MVC
+trying some web app <br>
+realization MVC<br>
 -pulling view
