@@ -15,14 +15,6 @@ var view = {
     }
 };
 
-view.displayMiss("00");
-view.displayHit("35");
-view.displayMiss("55");
-view.displayHit("12");
-view.displayMiss("25");
-view.displayHit("26");
-
-view.displayMessage("Tap Tap Tap");
 
 // Model
 
@@ -40,13 +32,25 @@ var model = {
     fire: function (guess) {
         for (var i = 0; i < this.numShips.length; i++) {
             var ship = this.ships[i];
-            var locations = ship.locations;
-            var index = locations.indexOf(guess);
-            if (index >= 0) {                             //HIT
+            var index = ship.locations.indexOf(guess);  // var locations = ship.locations;
+                                                        // var index = locations.indexOf(guess);
+            if (index >= 0) {                           //HIT
                 ship.hits[index] = "hit";
+                if (this.isSunk(ship)) {
+                    this.shipSunk++;
+                }
                 return true
             }
         }
-        return false;                                     //MISS
+        return false;                                   //MISS
+    },
+    // Method: Was the sunk
+    isSunk: function (ship) {
+        for (var i = 0; i < this.shipLength.length; i++) {
+            if (ship.hits[i] !== "hit") {
+                return false;
+            }
+        }
+        return true;
     }
 };
