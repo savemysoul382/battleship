@@ -36,12 +36,17 @@ var model = {
                                                         // var index = locations.indexOf(guess);
             if (index >= 0) {                           //HIT
                 ship.hits[index] = "hit";
+                view.displayHit(guess);
+                view.displayMessage("HIT!");
                 if (this.isSunk(ship)) {
                     this.shipSunk++;
+                    view.displayMessage("You sank my my battleship!");
                 }
                 return true
             }
         }
+        view.displayMiss(guess);
+        view.displayMessage("You missed.")
         return false;                                   //MISS
     },
     // Method: Was the sunk
