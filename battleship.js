@@ -44,10 +44,11 @@ var model = {
                     view.displayMessage("You sank my my battleship!");
                 }
                 return true
+                return true;
             }
         }
         view.displayMiss(guess);
-        view.displayMessage("You missed.")
+        view.displayMessage("You missed.");
         return false;                                   //MISS
     },
     // Method: was sank
