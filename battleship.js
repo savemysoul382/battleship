@@ -26,7 +26,7 @@ var model = {
     shipsSunk: 0,
 
     ships: [{locations: ["06", "16", "26"], hits: ["", "", ""]},
-            {locations: ["00", "33", "34"], hits: ["", "", ""]},
+            {locations: ["00", "10", "20"], hits: ["", "", ""]},
             {locations: ["63", "64", "65"], hits: ["", "", ""]}],
 
     // Method fire, hit or miss
@@ -101,7 +101,10 @@ function parseGuess(guess) {
 }
 
 controller.processGuess("A0");
+controller.processGuess("A1");
+controller.processGuess("A2");
 
 controller.processGuess("A6");
 controller.processGuess("B6");
 controller.processGuess("C6");
+controller.processGuess("D6");
