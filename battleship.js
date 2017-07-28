@@ -25,13 +25,15 @@ var model = {
     shipLength: 3,
     shipsSunk: 0,
 
-    ships: [{locations: ["06", "16", "26"], hits: ["", "", ""]},
-            {locations: ["00", "10", "20"], hits: ["", "", ""]},
-            {locations: ["63", "64", "65"], hits: ["", "", ""]}],
+    ships: [
+        { locations: ["06", "16", "26"], hits: ["", "", ""] },
+        { locations: ["24", "34", "44"], hits: ["", "", ""] },
+        { locations: ["10", "11", "12"], hits: ["", "", ""] }
+    ],
 
     // Method fire, hit or miss
     fire: function (guess) {
-        for (var i = 0; i < this.numShips.length; i++) {
+        for (var i = 0; i < this.numShips; i++) {
             var ship = this.ships[i];
             var index = ship.locations.indexOf(guess);  // var locations = ship.locations;
                                                         // var index = locations.indexOf(guess);
@@ -52,7 +54,7 @@ var model = {
     },
     // Method: was sank
     isSunk: function (ship) {
-        for (var i = 0; i < this.shipLength.length; i++) {
+        for (var i = 0; i < this.shipLength; i++) {
             if (ship.hits[i] !== "hit") {
                 return false;
             }
@@ -100,11 +102,26 @@ function parseGuess(guess) {
     return null;
 }
 
-controller.processGuess("A0");
-controller.processGuess("A1");
-controller.processGuess("A2");
+function init() {
+    var fireButton = document.getElementById("fireButton");
+    fireButton.onclick = handleFireButton;
+    var guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
+}
 
-controller.processGuess("A6");
-controller.processGuess("B6");
-controller.processGuess("C6");
-controller.processGuess("D6");
+function handleFireButton() {
+    var guessInput = document.getElementById("guessInput");
+    var guess = guessInput.value;
+    controller.processGuess(guess);
+    guessInput.value = "";
+}
+
+function handleKeyPress(e) {
+    var fireButton = document.getElementById("fireButton");
+    if (e.keyCode === 13) {
+        fireButton.click();
+        return false;
+    }
+}
+
+window.onload = init;
